@@ -1,10 +1,13 @@
 
 exports.getAll= function(req,res){
-   res.send("Todos los productos");
+   res.status(200).send("Todos los productos");
 };
 
-
 exports.get=function(req,res){
-    res.send("El detalle del producto " + req.params.id);
+    res.status(200).json({
+        id: req.params.id,
+        descripcion:"La descripcion del producto",
+        metadata:req.decoded
+    });
 };
 

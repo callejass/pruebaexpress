@@ -9,7 +9,6 @@ var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
 
 
-
 //las rutas de nuestra api
 var productos=require("./routes/productos");
 var authentication=require("./routes/authentication");
@@ -32,6 +31,10 @@ app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 
+
+
+
+//aquí metemos el middleware de autorizacion
 
 //indicamos a la aplicacion las rutas que tiene que utilizar
 app.use("/api/authenticate",authentication);

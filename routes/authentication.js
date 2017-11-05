@@ -11,7 +11,7 @@ router.get('/', function(req,res){
     //res.send("token generado correctamente");
     var payload={
         name:"Sergio",
-        admin:true
+        rol:"administrador"
     };
     var token = jwt.sign(payload,config.secret, {
         expiresIn: "24h" // expires in 24 hours
