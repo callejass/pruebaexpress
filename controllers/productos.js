@@ -6,7 +6,7 @@ exports.getAll= function(req,res){
 exports.get=function(req,res){
     res.status(200).json({
         id: req.params.id,
-        descripcion:"La descripcion del producto",
+        descripcion:"La descripcion del producto. Modificado en otro sitio",
         metadata:req.decoded
     });
 };
