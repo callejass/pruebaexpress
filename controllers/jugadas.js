@@ -1,3 +1,17 @@
-//Usuario db:usuariomongo
-//pwd: iwstsstroml //iwstsstroml
-//connectionstring mongodb://usuariomongo:<PASSWORD>@loteria-shard-00-00-oyydu.mongodb.net:27017,loteria-shard-00-01-oyydu.mongodb.net:27017,loteria-shard-00-02-oyydu.mongodb.net:27017/test?ssl=true&replicaSet=Loteria-shard-0&authSource=admin
+var Jugada = require("../models/jugadas");
+//var config = require("../config");
+//var mongoose = require("mongoose");
+
+//mongoose.connect(config.database);
+exports.getAll = function (req, res) {
+    
+    Jugada.find({}, function (err, users) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.json(users);
+        }
+    });
+    
+
+}

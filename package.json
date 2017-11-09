@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
+    "star1t": "npm app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sergio Callejas",
@@ -14,7 +15,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.13.0",
+    "mongoose": "^4.10.8",
     "morgan": "^1.9.0"
   }
 }

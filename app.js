@@ -3,15 +3,23 @@ var express     = require('express');
 
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
-//var mongoose    = require('mongoose');
+
+
+
+
+
 
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
 var cors = require('cors');
 
-//las rutas de nuestra api
-var productos=require("./routes/productos");
-var authentication=require("./routes/authentication");
+
+//la conexion a la base de datos
+var mongoose = require('mongoose');
+mongoose.connect(config.database);
+
+
+
 //var User   = require('./app/models/user'); // get our mongoose model
 
 // =======================
@@ -38,9 +46,16 @@ app.use(morgan('dev'));
 //aquí metemos el middleware de autorizacion
 
 //indicamos a la aplicacion las rutas que tiene que utilizar
-app.use("/api/authenticate",authentication);
-app.use("/api/productos",productos);
+//las rutas de nuestra api
+//var productos=require("./routes/productos");
+var usuarios=require("./routes/usuarios");
+app.use("/api/usuarios",usuarios);
 
+var jugadas=require("./routes/jugadas");
+app.use("/api/jugadas",jugadas);
+
+var autenticacion=require("./routes/autenticacion");
+app.use("/api/autenticar",autenticacion);
 
 
 app.listen(port,function(){
