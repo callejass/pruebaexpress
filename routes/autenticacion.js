@@ -6,7 +6,7 @@ var router = express.Router();
 
 // Todos los productos
 router.post('/',controller.autenticar);
-
+router.get("/validartoken",controller.validarToken);
 
 
 module.exports = router;

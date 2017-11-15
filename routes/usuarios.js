@@ -12,5 +12,5 @@ var router = express.Router();
 /* router.get('/:id',authorize.god); */
 router.get('/', controller.getAll);
 router.get('/:id',controller.get);
-
+router.post('/',controller.create);
 module.exports = router;

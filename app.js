@@ -57,6 +57,8 @@ app.use("/api/jugadas",jugadas);
 var autenticacion=require("./routes/autenticacion");
 app.use("/api/autenticar",autenticacion);
 
+var consultas=require("./routes/consultas");
+app.use("/api/consultas",consultas);
 
 app.listen(port,function(){
     console.log("Escuchando en el puerto 3000");

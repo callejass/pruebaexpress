@@ -1,4 +1,5 @@
 var Usuario = require("../models/usuario");
+var passwordHash = require('password-hash');
 //var config = require("../config");
 //var mongoose = require("mongoose");
 
@@ -12,16 +13,38 @@ exports.getAll = function (req, res) {
             res.json(users);
         }
     });
-    
-
 }
+
+
 exports.get = function (req, res) {
-
-}
-exports.create = function (req, res) {
-    res.status(200).json({
-        id: req.params.id,
-        descripcion: "La descripcion del producto. Modificado en otro sitio",
-        metadata: req.decoded
+    Usuario.findOne({id:req.params.id}, function (err, user) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if(user){
+                res.json(user);
+            }else{
+                res.status(404).send("No existe");
+            }
+            //res.json(users);
+        }
     });
+}
+
+exports.create = function (req, res) {
+
+    var hash=passwordHash.generate(req.body.password);
+    console.log(req.body.password);
+    console.log(hash);
+    var usuario = new Usuario({
+        id: req.body.user,
+        password: hash
+    });
+    usuario.save(function (err) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(201).json(usuario);
+        }
+    })
 };
