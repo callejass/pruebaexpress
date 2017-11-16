@@ -1,5 +1,7 @@
 var Usuario = require("../models/usuario");
 var passwordHash = require('password-hash');
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require("../config");
 //var config = require("../config");
 //var mongoose = require("mongoose");
 
@@ -38,13 +40,29 @@ exports.create = function (req, res) {
     console.log(hash);
     var usuario = new Usuario({
         id: req.body.user,
-        password: hash
+        password: hash,
+        rol:"usuario"
     });
     usuario.save(function (err) {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.status(201).json(usuario);
+            //le añado un token de autenticación a la respuesta
+            var payload = {
+                id: usuario.id,
+                rol: usuario.rol,
+                internalid: usuario._id
+            };
+            var token = jwt.sign(payload, config.secret, {
+                expiresIn: "100h" // expires in 24 hours
+            });
+            usuario.password=null;
+            usuario.token=token;
+            var registrodata={
+                usuario:usuario,
+                token:token
+            }
+            res.status(201).json(registrodata);
         }
     })
 };
