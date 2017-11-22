@@ -36,7 +36,7 @@ function authorizeRol(req, res, next, rol) {
 
         }
         //pongo en la petición lo qu ehemos decodificado (ver si poner el usuario y el rol por separado)
-        req.user=decoded;/* {
+        req.userdata=decoded;/* {
           id:decoded.id,
           internalid:decoded.internalid,
           rol:decoded.rol

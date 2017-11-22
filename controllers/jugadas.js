@@ -7,7 +7,7 @@ var Jugada = require("../models/jugadas");
 exports.getAll = function (req, res) {
 
 
-    Jugada.find({ usuario: req.user.internalid }, function (err, jugadas) {
+    Jugada.find({ usuario: req.userdata.internalid }, function (err, jugadas) {
         if (err) {
             res.status(500).send(err);
         } else {
