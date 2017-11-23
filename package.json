@@ -2,10 +2,9 @@
   "name": "expresspoc",
   "version": "1.0.0",
   "description": "prueba de crear un api con express y node",
-  "main": "app.js",
+  "main": "node app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "star1t": "npm app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sergio Callejas",

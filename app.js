@@ -61,7 +61,7 @@ var consultas=require("./routes/consultas");
 app.use("/api/consultas",consultas);
 
 app.listen(port,function(){
-    console.log("Escuchando en el puerto 3000");
+    console.log("Escuchando en el puerto 8080");
 
 });
 console.log("una prueba");
