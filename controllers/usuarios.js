@@ -7,14 +7,14 @@ var config = require("../config");
 
 //mongoose.connect(config.database);
 exports.getAll = function (req, res) {
-
-    Usuario.find({}, function (err, users) {
+    res.status(500).send("No implementado");
+    /* Usuario.find({}, function (err, users) {
         if (err) {
             res.status(500).send(err);
         } else {
             res.json(users);
         }
-    });
+    }); */
 }
 
 

@@ -16,12 +16,25 @@ exports.getAll = function (req, res) {
     });
 }
 
+exports.getOne=function(req,res){
+    Jugada.findOne({ _id: req.params.id, usuario: req.userdata.internalid }, function (err, jugada) {
+        if (err) res.status(500).send(err);
+        res.status(200).json(jugada);
+        /* if (jugada) {
+            
+        } else {
+            res.status(404).send("Registro no encontrado");
+        } */
+
+    });
+}
+
 exports.create = function (req, res) {
     var jugada = new Jugada({
         numero: req.body.numero,
         importe: req.body.importe,
         descripcion: req.body.descripcion,
-        usuario: req.user.internalid
+        usuario: req.userdata.internalid
     });
     jugada.save(function (err) {
         if (err) {
@@ -32,7 +45,7 @@ exports.create = function (req, res) {
     })
 }
 exports.update = function (req, res) {
-    Jugada.findOne({ _id: req.body._id, usuario: req.user.internalid }, function (err, jugada) {
+    Jugada.findOne({ _id: req.body._id, usuario: req.userdata.internalid }, function (err, jugada) {
         if (err) res.status(500).send(err);
         if (jugada) {
             jugada.numero = req.body.numero;
@@ -49,9 +62,14 @@ exports.update = function (req, res) {
     });
 }
 exports.delete=function(req,res){
-    Jugada.remove({ _id: req.body._id,usuario:req.user.internalid}, function (err) {
+    console.log("A borrar el " + req.params.id);
+    Jugada.findOne({ _id: req.params.id,usuario:req.userdata.internalid}).remove(function(err){
         if (err) res.status(500).send(err);
-        res.status(204).send("Borrado correcto");
+        
+                res.status(204).send("Borrado correcto");
+    });
+    /* Jugada.remove(, function (err) {
+        
         // removed!
-      });
+      }); */
 }

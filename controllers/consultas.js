@@ -21,7 +21,29 @@ exports.consultaNumero=function(req,res){
     }).catch(error=>{
         console.log(error);
         res.status(500).send(error);
-    });
-    
+    });    
 }
+
+exports.consultaEstado=function(req,res){
+    var url=config.elpais + "?s=1";
+    axios.get(url).then(response=>{
+        console.log(response.data);
+        res.send(response.data.replace("info=",""));
+    }).catch(error=>{
+        console.log(error);
+        res.status(500).send(error);
+    });   
+}
+
+exports.consultaFechaActualizacion=function(req,res){
+    var url=config.elpais + "?t=1";
+    axios.get(url).then(response=>{
+        console.log(response.data);
+        res.send(response.data.replace("info=",""));
+    }).catch(error=>{
+        console.log(error);
+        res.status(500).send(error);
+    });   
+}
+
 

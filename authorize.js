@@ -15,7 +15,7 @@ exports.god = function (req, res, next) {
 
 function authorizeRol(req, res, next, rol) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-  console.log("Autorizando para -" + rol + "-");
+  //console.log("Autorizando para -" + rol?rol:" All" + "-");
   // decode token
   if (token) {
 
